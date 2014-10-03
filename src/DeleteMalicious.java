@@ -1,7 +1,6 @@
 // Java Program to Delete files ending with files that can be malicious
 // WARNING : This program can delete your personal files. Use with Care
 //
-// For more detail visit http://aztnan.com/?p=
 //
 // Copyright 2014 Adnan Umer <aztnan@outlook.com> Follow me @aztnan
 //
@@ -31,6 +30,7 @@ public class DeleteMalicious {
     static String[] MaliciousFileExtensions = new String[] { ".exe", ".dll", ".hta", ".vbs", ".bat" };
 
     // Returns extension of a file
+    // For more detail visit http://aztnan.com/?p=353
     static String getExtension(String fileName) {
         // NOTE: Instead of traditional string spliting technique, I'm going to use
         // Regular Expressions that can be more efficient way
