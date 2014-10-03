@@ -27,79 +27,79 @@ import java.util.regex.*;
 
 public class DeleteMalicious {
 
-	// Lower cased file extension that can be malicious or potentialy unwanted
-	static String[] MaliciousFileExtensions = new String[] { ".exe", ".dll", ".hta", ".vbs", ".bat" };
+    // Lower cased file extension that can be malicious or potentialy unwanted
+    static String[] MaliciousFileExtensions = new String[] { ".exe", ".dll", ".hta", ".vbs", ".bat" };
 
-	// Returns extension of a file
-	static String getExtension(String fileName) {
-		// NOTE: Instead of traditional string spliting technique, I'm going to use
-		// Regular Expressions that can be more efficient way
-		// Using \.[^.\.]+ pattern we can match any string starting with period (.)
-		// to end of source string excluding period (.) inside of matched string
+    // Returns extension of a file
+    static String getExtension(String fileName) {
+        // NOTE: Instead of traditional string spliting technique, I'm going to use
+        // Regular Expressions that can be more efficient way
+        // Using \.[^.\. ]+ pattern we can match any string starting with period (.)
+        // to end of source string excluding period (.) inside of matched string
 
-		Matcher m = Pattern.compile("\\.[^.\\.]+").matcher(fileName);
+        Matcher m = Pattern.compile("\\.[^.\\. ]+").matcher(fileName);
 
-		String extension = "";
+        String extension = "";
 
-		// For example a file with double extension like myfile.tar.gzip actual file
-		// extension is .gzip. Above pattern will gives two results and last one is 
-		// the actual file extension so preserve current result and find next match
-		while (m.find())
-			 extension = m.group(0);
+        // For example a file with double extension like myfile.tar.gzip actual file
+        // extension is .gzip. Above pattern will gives two results and last one is 
+        // the actual file extension so preserve current result and find next match
+        while (m.find())
+             extension = m.group(0);
 
-		// If no match was found this will be empty string else contains last match
-		return extension;
-	}
+        // If no match was found this will be empty string else contains last match
+        return extension;
+    }
 
-	// Searches for files having any of extension from MaliciousFileExtensions
-	// and deletes that files
-	static void deleteMaliciousFiles(File[] files) {
-		for (File file : files) {
+    // Searches for files having any of extension from MaliciousFileExtensions
+    // and deletes that files
+    static void deleteMaliciousFiles(File[] files) {
+        for (File file : files) {
 
-			// Make sure to process obly for files
-			if (file.isFile()) {
+            // Make sure to process obly for files
+            if (file.isFile()) {
 
-				// Get the extension of file and convert to lower case to
-				// perform case in-sensitive search
-				String extension = getExtension(file.getName()).toLowerCase();
+                // Get the extension of file and convert to lower case to
+                // perform case in-sensitive search
+                String extension = getExtension(file.getName()).toLowerCase();
 
-				// Iterate over all extensions in MaliciousFileExtensions
-				for (String ext : MaliciousFileExtensions) {
+                // Iterate over all extensions in MaliciousFileExtensions
+                for (String ext : MaliciousFileExtensions) {
 
-					// and check current file extension is in MaliciousFileExtensions
-					// NOTE: Equal (=) not works for string So, use
-					// String.equals to check strings are equal or not
-					if (ext.equals(extension)) {
+                    // and check current file extension is in MaliciousFileExtensions
+                    // NOTE: Equal (=) not works for string So, use
+                    // String.equals to check strings are equal or not
+                    if (ext.equals(extension)) {
 
-						System.out.println("Found Virus in " + file.getName());
+                        System.out.println("Found Virus in " + file.getName());
 
-						// Delete the file
-						file.delete();
+                        // Delete the file
+                        file.delete();
 
-						// Breaks the loop to stop searching MaliciousFileExtensions array
-						break;
-					}
-				}
-			}
-		}
-	}
+                        // Breaks the loop to stop searching MaliciousFileExtensions array
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Scanner scaner = new Scanner(System.in);
-		System.out.print("Enter directory name: ");
+        Scanner scaner = new Scanner(System.in);
+        System.out.print("Enter directory name: ");
 
-		String directoryName = scaner.next();
+        String directoryName = scaner.next();
 
-		File directory = new File(directoryName);
+        File directory = new File(directoryName);
 
-		// Make sure give path is for a valid directory
-		if (directory.exists() && !directory.isFile()) {
+        // Make sure give path is for a valid directory
+        if (directory.exists() && !directory.isFile()) {
 
-			// If so do the job
-			deleteMaliciousFiles(directory.listFiles());
-		} else {
-			System.out.println("Invalid directory name");
-		}
-	}
+            // If so do the job
+            deleteMaliciousFiles(directory.listFiles());
+        } else {
+            System.out.println("Invalid directory name");
+        }
+    }
 }

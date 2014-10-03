@@ -26,44 +26,44 @@ import java.util.*;
 
 public class DeleteSpecificFiles {
 
-	// Deletes files whose name starts with specified string
-	static void deleteFiles(File[] files, String startWith) {
-		for (File file : files) {
+    // Deletes files whose name starts with specified string
+    static void deleteFiles(File files[], String startWith) {
+        for (File file : files) {
 
-			// process only files
-			if (file.isFile()) {
-				
-				// File name are case in-sensitive in windows. So perform
-				// Case In-Sensitive comparison
-				if (file.getName().toLowerCase().startsWith(startWith)) {
+            // process only files
+            if (file.isFile()) {
+                
+                // File name are case in-sensitive in windows. So perform
+                // Case In-Sensitive comparison
+                if (file.getName().toLowerCase().startsWith(startWith)) {
 
-					System.out.println("Deleting " + file.getName());					
+                    System.out.println("Deleting " + file.getName());                    
 
-					// Deletes the file
-					file.delete();
-				}
-			}
-		}
-	}
+                    // Deletes the file
+                    file.delete();
+                }
+            }
+        }
+    }
 
-	public static void main(String[] args) {
+    public static void main(String args[]) {
 
-		Scanner scaner = new Scanner(System.in);
-		System.out.print("Enter directory name: ");
-		String directoryName = scaner.next();
+        Scanner scaner = new Scanner(System.in);
+        System.out.print("Enter directory name: ");
+        String directoryName = scaner.next();
 
-		System.out.print("Enter staring keyword of files to delete: ");
-		String startWith = scaner.next();
+        System.out.print("Enter staring keyword of files to delete: ");
+        String startWith = scaner.next().toLowerCase();
 
-		File directory = new File(directoryName);
+        File directory = new File(directoryName);
 
-		// Process only if given path is a valid Directory
-		if (directory.exists() && !directory.isFile()) {
+        // Process only if given path is a valid Directory
+        if (directory.exists() && !directory.isFile()) {
 
-			// If so do job for all files in specified directory
-			deleteFiles(directory.listFiles(), startWith);
-		} else {
-			System.out.println("Invalid directory name");
-		}
-	}
+            // If so do job for all files in specified directory
+            deleteFiles(directory.listFiles(), startWith);
+        } else {
+            System.out.println("Invalid directory name");
+        }
+    }
 }

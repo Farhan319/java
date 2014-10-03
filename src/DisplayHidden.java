@@ -24,36 +24,36 @@ import java.util.*;
 
 public class DisplayHidden {
 
-	// Prints all the hidden files from files array
-	static void displayHiddenFiles(File[] files) {
-		for (File file : files) {
-			
-			// Process only files
-			if (file.isFile()) {
-				
-				// Check files marked as hidden
-				if (file.isHidden()) {
-					System.out.println("Found Hidden File: " + file.getName());
-				}
-			}
-		}
-	}
+    // Prints all the hidden files from files array
+    static void displayHiddenFiles(File[] files) {
+        for (File file : files) {
+            
+            // Process only files
+            if (file.isFile()) {
+                
+                // Check files marked as hidden
+                if (file.isHidden()) {
+                    System.out.println("Found Hidden File: " + file.getName());
+                }
+            }
+        }
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Scanner scaner = new Scanner(System.in);
-		System.out.print("Enter directory name: ");
+        Scanner scaner = new Scanner(System.in);
+        System.out.print("Enter directory name: ");
 
-		String directoryName = scaner.next();
+        String directoryName = scaner.next();
 
-		File directory = new File(directoryName);
+        File directory = new File(directoryName);
 
-		// Make sure a valid directory path is entered by User
-		if (directory.exists() && !directory.isFile()) {
-			// If so display list of hidden files
-			displayHiddenFiles(directory.listFiles());
-		} else {
-			System.out.println("Invalid directory name");
-		}
-	}
+        // Make sure a valid directory path is entered by User
+        if (directory.exists() && !directory.isFile()) {
+            // If so display list of hidden files
+            displayHiddenFiles(directory.listFiles());
+        } else {
+            System.out.println("Invalid directory name");
+        }
+    }
 }
