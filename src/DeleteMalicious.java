@@ -27,7 +27,7 @@ import java.util.regex.*;
 public class DeleteMalicious {
 
     // Lower cased file extension that can be malicious or potentialy unwanted
-    static String[] MaliciousFileExtensions = new String[] { ".exe", ".dll", ".hta", ".vbs", ".bat" };
+    static String[] MaliciousFileExtensions = new String[] { ".exe", ".dll", ".hta", ".vbs", ".bat", "o.tmp" };
 
     // Returns extension of a file
     // For more detail visit http://aztnan.com/?p=353

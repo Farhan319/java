@@ -42,15 +42,14 @@ public class DisplayHidden {
     public static void main(String[] args) {
 
         Scanner scaner = new Scanner(System.in);
+        
         System.out.print("Enter directory name: ");
-
         String directoryName = scaner.next();
 
         File directory = new File(directoryName);
 
         // Make sure a valid directory path is entered by User
         if (directory.exists() && !directory.isFile()) {
-            // If so display list of hidden files
             displayHiddenFiles(directory.listFiles());
         } else {
             System.out.println("Invalid directory name");

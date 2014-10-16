@@ -35,7 +35,8 @@ public class DeleteSpecificFiles {
                 
                 // File name are case in-sensitive in windows. So perform
                 // Case In-Sensitive comparison
-                if (file.getName().toLowerCase().startsWith(startWith)) {
+                String fileName = file.getName().toLowerCase();
+                if (fileName.startsWith(startWith)) {
 
                     System.out.println("Deleting " + file.getName());                    
 
